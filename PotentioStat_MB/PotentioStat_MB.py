@@ -51,7 +51,7 @@ for i, line in enumerate(data_lines):
             change_idx.append(i)
 
 groups = []
-# 0, +, -, +, -
+# extract last +,- data of 0, +, -, +, -
 for i, idx in enumerate(change_idx):
     if (i + 1) % 5 == 3:
         groups.append(critical_data[change_idx[i]:change_idx[i+1]])
@@ -61,12 +61,16 @@ for i, idx in enumerate(change_idx):
         else:
             groups.append(critical_data[change_idx[i]:change_idx[i+1]])
 
+
+'''
+# prev methods
 # -- write data
 dirname = filename.replace(".mpt", "")
 if dirname not in os.listdir("./"):
     os.mkdir(dirname)
 os.chdir(dirname)
 cycle = 1
+
 for i, group in enumerate(groups):
     if i % 2 == 0:        
         datafilename = filename.replace(".mpt", "_cycle" + str(cycle) + ".csv")
@@ -80,8 +84,45 @@ for i, group in enumerate(groups):
             f.write(g + "\n")
         cycle += 1
     f.close()
+'''
+cycle = 1
+data = {}
+max_len = 0
+for i, group in enumerate(groups):
+    if i % 2 == 0:        
+        data[cycle] = group
+    elif i % 2 == 1:
+        data[cycle] += group
+        if len(data[cycle]) > max_len:
+            max_len = len(data[cycle])
+        cycle += 1
+max_cycle = len(data.keys())
 
+datafilename = filename.replace(".mpt", ".csv")
+f = open(datafilename, "w")
+# header 1 : cycle number
+header1 = ""
+for i in range(max_cycle):
+    header1 += "cycle" + str(i+1) + ",,,"
+header1 += "\n"
+f.write(header1)
+    
+# header 2
+header2 = "time/s,Ewe/V,controm/mA," * max_cycle + "\n"
+f.write(header2)
 
+# handling short cycles
+for key in data.keys():
+    if len(data[key]) < max_len:
+        for i in range(max_len - len(data[key])):
+            data[key].append(",,")
 
+# write data
+for i in range(max_len):
+    each_line = ""
+    for key in data.keys():
+        each_line += data[key][i] + ","
+    each_line += "\n"
+    f.write(each_line)
 
-
+f.close()
