@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['PotentioStat_MB.py'],
-             pathex=['C:\\Users\\91bsj\\Documents\\GitHub\\rani'],
+             pathex=['C:\\Users\\91bsj\\Documents\\GitHub\\rani\\PotentioStat_MB'],
              binaries=[],
              datas=[],
              hiddenimports=[],
