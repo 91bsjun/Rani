@@ -36,7 +36,7 @@ rdata = []
 ecycles = []
 for c in cycles:
     try:
-        rdata.append(data[c][64])
+        rdata.append(data[c][66])
     except:
         ecycles.append(c)
 
