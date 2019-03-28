@@ -5,11 +5,11 @@ __maintainer__ = "Byeongsun Jun"
 __email__ = "bsjun@hanyang.ac.kr"
 __date__ = "27/3/2019"
 
-print("# ------------------------------------------- #")
-print("#  Maintainer   : Byeongsun Jun               #")
-print("#  e-mail       : bsjun@hanyang.ac.kr         #")
-print("#  Original URL : https://github.com/91bsjun  #")
-print("# ------------------------------------------- #\n")
+print(" # ------------------------------------------- #")
+print(" #  Maintainer   : Byeongsun Jun               #")
+print(" #  e-mail       : bsjun@hanyang.ac.kr         #")
+print(" #  Original URL : https://github.com/91bsjun  #")
+print(" # ------------------------------------------- #\n")
 
 li = [f for f in os.listdir("./") if ".csv" in f]
 li.sort()
