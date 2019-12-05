@@ -1,9 +1,7 @@
 
 # Finding EDV (End of Discharge Voltage)
----
 
 # File format
----
 - 파일 포멧은 csv 이어야 한다
 - 파일의 첫번째 행은 행 제목이어야 한다.
 - 첫번째 열은 Cycle, 두번째 열은 Voltage 여야 한다
